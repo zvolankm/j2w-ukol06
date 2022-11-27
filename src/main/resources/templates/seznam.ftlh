@@ -1,24 +1,34 @@
 [#ftl]
 [@c.page]
     <div class="seznam">
-        <a href="/detail">
+        [#list vizitky as vizitka]
+        <a href="/${vizitka.id}">
             <div class="vizitka">
-                <div class="jmeno">Dita (Přikrylová) Formánková</div>
-                <div class="firma">Czechitas z. s.</div>
+                <div class="jmeno">${vizitka.celeJmeno}</div>
+                <div class="firma">${vizitka.firma}</div>
                 <div class="udaje">
                     <div class="adresa">
-                        <div>Václavské náměstí 837/11</div>
-                        <div><span>11000</span> <span>Praha 1</span></div>
+                        <div>${vizitka.ulice}</div>
+                        <div><span>${vizitka.psc} ${vizitka.obec}</span></div>
                     </div>
                     <div class="kontakty">
-                        <div><i class="las la-at"></i> <span>dita@czechitas.cs</span></div>
-                        <div><i class="las la-phone-alt"></i> <span>+420 800123456</span></div>
-                        <div><i class="las la-globe"></i> <span>www.czechitas.cz</span></div>
+                        <div>[#if vizitka.email?exists]
+                                <i class="las la-at"></i><span>${vizitka.email}</span>
+                            [/#if]
+                        </div>
+                        <div> [#if vizitka.telefon?exists]
+                                <i class="las la-phone-alt"></i><span>${vizitka.telefon}</span>
+                            [/#if]
+                        </div>
+                        <div>[#if vizitka.web?exists]
+                                <i class="las la-globe"></i><span>${vizitka.web}</span>
+                            [/#if]
+                        </div>
                     </div>
                 </div>
             </div>
         </a>
-
+        [/#list]
         <a href="/nova">
             <div class="vizitka vizitka--nova">
                 <svg width="100" height="100">
